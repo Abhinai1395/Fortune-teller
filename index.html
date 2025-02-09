@@ -96,7 +96,11 @@
             const fortuneCard = document.getElementById('fortuneCard');
             
             let fortune;
-            if (name.toLowerCase() === "mercy" || name.toLowerCase() === "shrenitha") {
+            const randomChance = Math.random(); // Generate a random number between 0 and 1
+            
+            if (randomChance < 0.15) { // 5% chance to get a general fortune instead
+                fortune = generalFortunes[Math.floor(Math.random() * generalFortunes.length)];
+            } else if (name.toLowerCase() === "mercy" || name.toLowerCase() === "shrenitha") {
                 fortune = specialFortunes[Math.floor(Math.random() * specialFortunes.length)];
             } else if (name.toLowerCase() === "naveena" || name.toLowerCase() === "blessy") {
                 fortune = marriageFortunes[Math.floor(Math.random() * marriageFortunes.length)];
