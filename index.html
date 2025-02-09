@@ -27,9 +27,11 @@
             font-size: 18px;
             font-weight: bold;
             color: #333;
-            cursor: pointer;
             transition: transform 0.3s;
             margin: 20px auto;
+        }
+        .fortune-card.hidden {
+            display: none;
         }
         .fortune-card:hover {
             transform: scale(1.1);
@@ -38,54 +40,51 @@
 </head>
 <body>
     <h1>🔮 Fortune Teller 🔮</h1>
-    <p>Enter your name and click the card to reveal your fortune!</p>
-    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <p>Enter your name and click the button to reveal your fortune!</p>
+    <input type="text" id="nameInput" placeholder="Enter your name" onkeydown="handleEnter(event)" />
+    <button onclick="revealFortune()">Reveal Fortune</button>
     <div class="container">
-        <div class="fortune-card" onclick="revealFortune()">
-            Click Me!
-        </div>
+        <div class="fortune-card" id="fortuneCard">Click Me!</div>
     </div>
     <script>
         const generalFortunes = [
-            "will have a day full of joy!",
-            "is about to receive exciting news!",
-            "will meet someone who changes their life!",
-            "will achieve great success soon!",
-            "is destined for an adventure!",
-            "should expect the unexpected!",
-            "will have a lucky streak today!",
-            "might have an ordinary but peaceful day!",
-            "could face a small challenge, but will overcome it!",
-            "may experience a moment of reflection today!"
+            "will have a day full of joy! Something unexpected will make you smile.",
+            "is about to receive exciting news! A surprise awaits you.",
+            "will meet someone who changes their life! Keep an open mind.",
+            "will achieve great success soon! Hard work always pays off.",
+            "is destined for an adventure! Pack your bags and be ready!",
+            "should expect the unexpected! Life always has surprises in store.",
+            "will have a lucky streak today! Use it wisely.",
+            "might have an ordinary but peaceful day! Enjoy the calm.",
+            "could face a small challenge, but will overcome it! Stay strong.",
+            "may experience a moment of reflection today! Take time for yourself."
         ];
         
         const specialFortunes = [
-            "is truly beautiful inside and out!",
-            "has a kind heart that brightens everyone's day!",
-            "is an amazing chef with incredible talent!",
-            "spreads positivity and goodness wherever they go!"
+            "is truly beautiful inside and out! Your kindness is your superpower.",
+            "has a kind heart that brightens everyone's day! Your warmth is felt by all.",
+            "is an amazing chef with incredible talent! Your cooking brings joy to many.",
+            "spreads positivity and goodness wherever they go! The world is better with you."
         ];
         
         const marriageFortunes = [
-            "is beautiful and good-hearted and will get married soon!",
-            "radiates kindness and love, and wedding bells are in the air!",
-            "has a heart of gold and a wonderful future spouse awaits!"
+            "is beautiful and good-hearted and will get married soon! Love is in the air.",
+            "radiates kindness and love, and wedding bells are in the air! A new chapter begins.",
+            "has a heart of gold and a wonderful future spouse awaits! Your love story is unfolding."
         ];
         
         const heroFortunes = [
-            "is a true hero of the world!",
-            "is a living legend, inspiring everyone!",
-            "has the heart of a champion and the soul of a warrior!",
-            "is destined for greatness and will leave a legacy!",
-            "possesses the spirit of Monkey D. Luffy, never giving up on dreams!",
-            "has the strength and determination of Roronoa Zoro, always pushing limits!"
+            "is a true hero of the world! Just like Luffy, you never give up!",
+            "is a living legend, inspiring everyone! Your determination rivals Zoro’s.",
+            "has the heart of a champion and the soul of a warrior! You fight for what’s right.",
+            "is destined for greatness and will leave a legacy! Your journey is just beginning."
         ];
         
         const philosopherFortunes = [
-            "is a deep thinker and a true philosopher!",
-            "has wisdom beyond their years!",
-            "sees the world in a unique and profound way!",
-            "inspires others with deep thoughts and ideas!"
+            "is a deep thinker and a true philosopher! Your wisdom guides others.",
+            "has wisdom beyond their years! People admire your insight.",
+            "sees the world in a unique and profound way! Your thoughts are truly deep.",
+            "inspires others with deep thoughts and ideas! Your words have power."
         ];
         
         function revealFortune() {
@@ -94,7 +93,7 @@
                 alert("Please enter your name first!");
                 return;
             }
-            const fortuneCard = document.querySelector('.fortune-card');
+            const fortuneCard = document.getElementById('fortuneCard');
             
             let fortune;
             if (name.toLowerCase() === "mercy" || name.toLowerCase() === "shrenitha") {
@@ -110,6 +109,13 @@
             }
             
             fortuneCard.textContent = `${name} ${fortune}`;
+            fortuneCard.classList.remove("hidden");
+        }
+        
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                revealFortune();
+            }
         }
     </script>
 </body>
