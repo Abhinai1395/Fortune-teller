@@ -87,6 +87,13 @@
             "inspires others with deep thoughts and ideas! Your words have power."
         ];
         
+        const pruthviFortunes = [
+            "is a genuine and kind-hearted person, but has a little anger! Wedding bells are ringing soon!",
+            "is known for their honesty and sincerity, though a bit short-tempered! Love is coming soon.",
+            "is an amazing person with a golden heart! Wedding is on the horizon, but keep your cool!",
+            "has a strong personality and a little fire inside, but love is on the way! Wedding vibes ahead!"
+        ];
+        
         function revealFortune() {
             const name = document.getElementById('nameInput').value.trim();
             if (!name) {
@@ -98,7 +105,7 @@
             let fortune;
             const randomChance = Math.random(); // Generate a random number between 0 and 1
             
-            if (randomChance < 0.15) { // 5% chance to get a general fortune instead
+            if (randomChance < 0.15) { // 15% chance to get a general fortune instead
                 fortune = generalFortunes[Math.floor(Math.random() * generalFortunes.length)];
             } else if (name.toLowerCase() === "mercy" || name.toLowerCase() === "shrenitha") {
                 fortune = specialFortunes[Math.floor(Math.random() * specialFortunes.length)];
@@ -108,6 +115,8 @@
                 fortune = heroFortunes[Math.floor(Math.random() * heroFortunes.length)];
             } else if (name.toLowerCase() === "dheeru" || name.toLowerCase() === "dheeraj") {
                 fortune = philosopherFortunes[Math.floor(Math.random() * philosopherFortunes.length)];
+            } else if (["pruthvi", "pruthviraj", "pruthviraj m n"].includes(name.toLowerCase())) {
+                fortune = pruthviFortunes[Math.floor(Math.random() * pruthviFortunes.length)];
             } else {
                 fortune = generalFortunes[Math.floor(Math.random() * generalFortunes.length)];
             }
